@@ -1,0 +1,172 @@
+var _user$project$Src_Model$Model = F2(
+	function (a, b) {
+		return {card: a, remainingCards: b};
+	});
+var _user$project$Src_Model$Two = function (a) {
+	return {ctor: 'Two', _0: a};
+};
+var _user$project$Src_Model$Three = function (a) {
+	return {ctor: 'Three', _0: a};
+};
+var _user$project$Src_Model$Four = function (a) {
+	return {ctor: 'Four', _0: a};
+};
+var _user$project$Src_Model$Five = function (a) {
+	return {ctor: 'Five', _0: a};
+};
+var _user$project$Src_Model$Six = function (a) {
+	return {ctor: 'Six', _0: a};
+};
+var _user$project$Src_Model$Seven = function (a) {
+	return {ctor: 'Seven', _0: a};
+};
+var _user$project$Src_Model$Eight = function (a) {
+	return {ctor: 'Eight', _0: a};
+};
+var _user$project$Src_Model$Nine = function (a) {
+	return {ctor: 'Nine', _0: a};
+};
+var _user$project$Src_Model$Ten = function (a) {
+	return {ctor: 'Ten', _0: a};
+};
+var _user$project$Src_Model$Jack = function (a) {
+	return {ctor: 'Jack', _0: a};
+};
+var _user$project$Src_Model$Queen = function (a) {
+	return {ctor: 'Queen', _0: a};
+};
+var _user$project$Src_Model$King = function (a) {
+	return {ctor: 'King', _0: a};
+};
+var _user$project$Src_Model$Ace = function (a) {
+	return {ctor: 'Ace', _0: a};
+};
+var _user$project$Src_Model$InvalidCard = {ctor: 'InvalidCard'};
+var _user$project$Src_Model$shuffle = F3(
+	function (unshuffled, i, seed) {
+		shuffle:
+		while (true) {
+			var atI = A2(
+				_elm_lang$core$Maybe$withDefault,
+				_user$project$Src_Model$InvalidCard,
+				A2(_elm_lang$core$Array$get, i, unshuffled));
+			var g = A2(
+				_elm_lang$core$Random$int,
+				0,
+				(_elm_lang$core$Array$length(unshuffled) - i) - 1);
+			var _p0 = A2(_elm_lang$core$Random$step, g, seed);
+			var j = _p0._0;
+			var nextSeed = _p0._1;
+			var atIJ = A2(
+				_elm_lang$core$Maybe$withDefault,
+				_user$project$Src_Model$InvalidCard,
+				A2(_elm_lang$core$Array$get, i + j, unshuffled));
+			var shuffled = A3(
+				_elm_lang$core$Array$set,
+				i + j,
+				atI,
+				A3(_elm_lang$core$Array$set, i, atIJ, unshuffled));
+			if (_elm_lang$core$Native_Utils.cmp(
+				i,
+				_elm_lang$core$Array$length(shuffled) - 2) > 0) {
+				return shuffled;
+			} else {
+				var _v0 = shuffled,
+					_v1 = i + 1,
+					_v2 = nextSeed;
+				unshuffled = _v0;
+				i = _v1;
+				seed = _v2;
+				continue shuffle;
+			}
+		}
+	});
+var _user$project$Src_Model$Spades = {ctor: 'Spades'};
+var _user$project$Src_Model$Hearts = {ctor: 'Hearts'};
+var _user$project$Src_Model$Diamonds = {ctor: 'Diamonds'};
+var _user$project$Src_Model$Clubs = {ctor: 'Clubs'};
+var _user$project$Src_Model$shuffledDeck = function () {
+	var seed = _elm_lang$core$Random$initialSeed(1);
+	var cardsWithSuit = function (s) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (c) {
+				return c(s);
+			},
+			{
+				ctor: '::',
+				_0: _user$project$Src_Model$Ace,
+				_1: {
+					ctor: '::',
+					_0: _user$project$Src_Model$King,
+					_1: {
+						ctor: '::',
+						_0: _user$project$Src_Model$Queen,
+						_1: {
+							ctor: '::',
+							_0: _user$project$Src_Model$Jack,
+							_1: {
+								ctor: '::',
+								_0: _user$project$Src_Model$Ten,
+								_1: {
+									ctor: '::',
+									_0: _user$project$Src_Model$Nine,
+									_1: {
+										ctor: '::',
+										_0: _user$project$Src_Model$Eight,
+										_1: {
+											ctor: '::',
+											_0: _user$project$Src_Model$Seven,
+											_1: {
+												ctor: '::',
+												_0: _user$project$Src_Model$Six,
+												_1: {
+													ctor: '::',
+													_0: _user$project$Src_Model$Five,
+													_1: {
+														ctor: '::',
+														_0: _user$project$Src_Model$Four,
+														_1: {
+															ctor: '::',
+															_0: _user$project$Src_Model$Three,
+															_1: {
+																ctor: '::',
+																_0: _user$project$Src_Model$Two,
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+	};
+	var suits = {
+		ctor: '::',
+		_0: _user$project$Src_Model$Clubs,
+		_1: {
+			ctor: '::',
+			_0: _user$project$Src_Model$Diamonds,
+			_1: {
+				ctor: '::',
+				_0: _user$project$Src_Model$Hearts,
+				_1: {
+					ctor: '::',
+					_0: _user$project$Src_Model$Spades,
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	};
+	var fullDeck = _elm_lang$core$Array$fromList(
+		A2(_elm_lang$core$List$concatMap, cardsWithSuit, suits));
+	return _elm_lang$core$Array$toList(
+		A3(_user$project$Src_Model$shuffle, fullDeck, 0, seed));
+}();
+var _user$project$Src_Model$model = {card: _elm_lang$core$Maybe$Nothing, remainingCards: _user$project$Src_Model$shuffledDeck};

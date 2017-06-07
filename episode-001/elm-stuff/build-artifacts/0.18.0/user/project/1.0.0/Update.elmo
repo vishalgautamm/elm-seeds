@@ -1,0 +1,13 @@
+var _user$project$Update$update = F2(
+	function (action, model) {
+		var remainingCards = A2(
+			_elm_lang$core$Maybe$withDefault,
+			{ctor: '[]'},
+			_elm_lang$core$List$tail(model.remainingCards));
+		var newCard = _elm_lang$core$List$head(model.remainingCards);
+		var _p0 = action;
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{card: newCard, remainingCards: remainingCards});
+	});
+var _user$project$Update$FetchNextCard = {ctor: 'FetchNextCard'};
