@@ -9,7 +9,7 @@
 elm-package install
 ```
 
-(Answer `y` when prompted.)
+(Answer `y` when prompted)
 
 
 ## Building
